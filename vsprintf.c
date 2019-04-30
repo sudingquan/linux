@@ -40,13 +40,15 @@ unsigned long simple_strtoul(const char *cp,char **endp,unsigned int base)
 }
 
 /* we use this so that we can do without the ctype library */
-#define is_digit(c)	((c) >= '0' && (c) <= '9')
+#define is_digit(c)	((c) >= '0' && (c) <= '9')    //判断字符c是否在0-9范围内
 
-static int skip_atoi(const char **s)
+static int skip_atoi(const char **s)    //将一个数字字符串的转换成整型
 {
 	int i=0;
 
 	while (is_digit(**s))
+        //从高位开始，转换成整型后乘10，继续处理下一位
+        //*s指的是s的指针，*（(*s)++)指的是先将高位转换完后指针后移一位，处理下一位字符
 		i = i*10 + *((*s)++) - '0';
 	return i;
 }
