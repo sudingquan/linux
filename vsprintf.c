@@ -70,15 +70,15 @@ static char * number(char * str, int num, int base, int size, int precision
 	,int type)
 {
 	char c,sign,tmp[36];
-	const char *digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	const char *digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //大写字母
 	int i;
 
-	if (type&SMALL) digits="0123456789abcdefghijklmnopqrstuvwxyz";
+	if (type&SMALL) digits="0123456789abcdefghijklmnopqrstuvwxyz"; //小写字母
 	if (type&LEFT) type &= ~ZEROPAD;
 	if (base<2 || base>36)
 		return 0;
-	c = (type & ZEROPAD) ? '0' : ' ' ;
-	if (type&SIGN && num<0) {
+	c = (type & ZEROPAD) ? '0' : ' ' ;//判断补0还是补空格
+	if (type&SIGN && num<0) {   //判断是否为负数
 		sign='-';
 		num = -num;
 	} else
