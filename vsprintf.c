@@ -252,16 +252,16 @@ int vsprintf(char *buf, const char *fmt, va_list args)
 			break;
 
 		default:
-			if (*fmt != '%')
+			if (*fmt != '%')//如果当前格式控制符不是%，则输出一个%，下一个if输出%后面不是上述情况的字符
 				*str++ = '%';
-			if (*fmt)
+			if (*fmt)//如果是%%则第一个if不输出%只有第二个%才输出一个%
 				*str++ = *fmt;
 			else
-				--fmt;
+				--fmt;//如果%后面没有字符，则需要后退一位
 			break;
 		}
 	}
-	*str = '\0';
+	*str = '\0';//字符串结尾
 	return str-buf;
 }
 
